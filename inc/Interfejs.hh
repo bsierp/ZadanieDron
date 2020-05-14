@@ -1,13 +1,46 @@
 #ifndef INTERFEJS_HH
 #define INTERFEJS_HH
+#define DRONE_MOVEMENT_FREQUENCY 0.01
+#define DRONE_ROTATION_FREQUENCY 0.1
+/*!
+ * \file
+ * \brief Definicja klasy abstrakcyjnej Interfejs
+ *
+ * Plik zawiera definicje klasy abstrakcyjnej Interfejs,
+ * oraz deklaracje wirtualnych metod tej klasy.
+ */
 #include "Prostopadloscian.hh"
+/*!
+* \brief Model pojęcia interfejsu drona
+*
+* Klasa abstrakcyjna modeluje pojęcie 
+* interfejsu sterującego dronem.
+*/
 class Interfejs{
-    protected:
-    virtual void ruch_x(double x,drawNS::Draw3DAPI *gplt)=0;
-    virtual void ruch_y(double y,drawNS::Draw3DAPI *gplt)=0;
-    virtual void ruch_z(double z,drawNS::Draw3DAPI *gplt)=0;
     public:
-    virtual void ruch_drona(const Wektor<double,3> & W,drawNS::Draw3DAPI *gplt)=0;
-    virtual void obrot_drona(double kat_obr,drawNS::Draw3DAPI *gplt)=0;
+    /*!
+    * \brief Metoda przesuwająca drona
+    * 
+    * Zmienia położenie drona w przód
+    * o wybraną odległość. Ruch drona jest animowany. \n
+    * \param[in] odl - odległość o jaką dron ma się przesunąć
+    */
+    virtual void ruch_drona(double odl)=0;
+    /*!
+    * \brief Metoda obracająca drona
+    * 
+    * Zmienia macierz orientacji drona o wybrany kat
+    * (W osi z). Obrót jest animowany. \n
+    * \param[in] kat - wartość kąta, o który ma zostać obrócony dron
+    */
+    virtual void obrot_drona(double kat_obr)=0;
+    /*!
+    * \brief Metoda ruszająca dronem w osi z
+    * 
+    * Zmienia położenie drona w osi z
+    * o wybraną wartość. Ruch jest animowany. \n
+    * \param[in] odl - odleglosc o jaka ma sie wzniesc/opasc dron
+    */
+    virtual void wznies_opusc_drona(double odl)=0;
 };
 #endif

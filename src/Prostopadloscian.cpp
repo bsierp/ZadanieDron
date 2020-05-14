@@ -1,44 +1,62 @@
 #include "Prostopadloscian.hh"
-void Prostopadloscian::zmien_wierzcholek(const Wektor<double,3> &Skl,int index){
-    this->wierzcholki[index]=Skl;
-}
 Prostopadloscian::Prostopadloscian(){
-    Wektor<double,3> W;
-for(int i=0;i<8;++i){
-    this->wierzcholki.push_back(W);
+    for(double &wymiar:wym){
+        wymiar=0;
+    }
 }
-}//Do testow
-const Wektor<double,3> & Prostopadloscian::operator[](int index) const{
-     if (index<0&&index>8)
-    {                                                 
-       std::cerr<<"Wierzcholek poza zakresem"<<std::endl;                          
-        exit(1);                                                                
-    }                                                                           
-    return this->wierzcholki[index];
-} 
-void Prostopadloscian::Rysuj(drawNS::Draw3DAPI *gplt){
-  
-this->id=gplt->draw_polyhedron(vector<vector<Point3D> > {{                                         
+Prostopadloscian::Prostopadloscian(double width,double length, double height,drawNS::Draw3DAPI *api){
+    if(width>0&&length>0&&height>0){
+    wym[0]=width;
+    wym[1]=length;
+    wym[2]=height;
+    this->gplt=api;
+    }
+    else
+    {
+        cerr<<"Wprowadzono niedodatnia dlugosc boku"<<endl;
+        exit(1);
+    }
+    
+}
+
+void Prostopadloscian::ustaw_wierzcholki(){
+    Wektor <double,3> pol_width(this->wym[0]/2,0,0);
+    Wektor <double,3> pol_length(0,this->wym[1]/2,0);
+    Wektor <double,3> pol_height(0,0,this->wym[2]/2);
+    this->wierzcholki[0]=this->srodek+this->orient*((pol_width+pol_length+pol_height)*(-1));
+    this->wierzcholki[1]=this->srodek+this->orient*(pol_width-pol_length-pol_height);
+    this->wierzcholki[2]=this->srodek+this->orient*(pol_width+pol_length-pol_height);
+    this->wierzcholki[3]=this->srodek+this->orient*(pol_length-pol_width-pol_height);
+    this->wierzcholki[4]=this->srodek+this->orient*(pol_height-pol_length-pol_width);
+    this->wierzcholki[5]=this->srodek+this->orient*(pol_width-pol_length+pol_height);
+    this->wierzcholki[6]=this->srodek+this->orient*(pol_width+pol_length+pol_height);
+    this->wierzcholki[7]=this->srodek+this->orient*(pol_length-pol_width+pol_height);
+    }
+void Prostopadloscian::Rysuj(){
+    (*this).ustaw_wierzcholki();
+    this->id=this->gplt->draw_polyhedron(vector<vector<Point3D> > {{                                         
         drawNS::Point3D(this->wierzcholki[0][0],this->wierzcholki[0][1],this->wierzcholki[0][2]), drawNS::Point3D(this->wierzcholki[1][0],this->wierzcholki[1][1],this->wierzcholki[1][2]), drawNS::Point3D(this->wierzcholki[2][0],this->wierzcholki[2][1],this->wierzcholki[2][2]),drawNS::Point3D(this->wierzcholki[3][0],this->wierzcholki[3][1],this->wierzcholki[3][2])             
       },{                                                                                  
         drawNS::Point3D(this->wierzcholki[4][0],this->wierzcholki[4][1],this->wierzcholki[4][2]), drawNS::Point3D(this->wierzcholki[5][0],this->wierzcholki[5][1],this->wierzcholki[5][2]), drawNS::Point3D(this->wierzcholki[6][0],this->wierzcholki[6][1],this->wierzcholki[6][2]),drawNS::Point3D(this->wierzcholki[7][0],this->wierzcholki[7][1],this->wierzcholki[7][2])             
           }},"blue");
 }
-//Do testow
-Wektor<double,3> & Prostopadloscian::operator[](int index){
-    if (index<0&&index>8)
-    {                                                 
-       std::cerr<<"Wierzcholek poza zakresem"<<std::endl;                          
-        exit(1);                                                                
-    }                                                                           
-    return this->wierzcholki[index];
+void Prostopadloscian::Obroc(double kat){
+    (*this).Wymaz();
+    MacOb nowa_orient('z',kat);
+    this->orient=this->orient*nowa_orient;
+    (*this).Rysuj();
 }
-//Do testow
-std::istream & operator>>(std::istream &strm, Prostopadloscian & fig){
-    Wektor <double,3> pom;
-    for(int i=0;i<8;++i){
-        strm>>pom;
-        fig.zmien_wierzcholek(pom,i);
-    }
-    return strm;
+void Prostopadloscian::Ruszaj(double odl){
+    (*this).Wymaz();
+    Wektor<double,3> przemieszczenie(0,odl,0);
+    this->srodek=this->srodek+this->orient*przemieszczenie;
+    (*this).Rysuj();
+}
+void Prostopadloscian::Wznies_Opusc(double odl){
+    (*this).Wymaz();
+    this->srodek[2]+=odl;
+    (*this).Rysuj();
+}
+void Prostopadloscian::Wymaz(){
+    this->gplt->erase_shape(this->id);
 }
