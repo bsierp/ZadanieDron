@@ -32,7 +32,6 @@ class Obiekt3D{
     * względem globalnego układu współrzędnych
     */
     MacOb orient;
-    double kat_obrotu;
     /*!
     * \brief Id obiektu 
     * 

@@ -54,7 +54,7 @@ class Prostopadloscian:public Obiekt3D {
    */
     Prostopadloscian();
     /*!
-    * \brief Konstruktor trójparametryczny klasy Prostopadloscian
+    * \brief Konstruktor czteroparametryczny klasy Prostopadloscian
     * 
     * Konstruktor wypełnia tablicę wymiarów parametrami konstruktora. \n
     * \param[in] width - szerokość prostopadłościanu (wymiar w osi x)
