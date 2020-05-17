@@ -18,6 +18,13 @@ using std::vector;
 */
 class GraniastoslupHex:public Obiekt3D {
     protected:
+    /*!
+    * \brief Orientacja graniastosłupa
+    * 
+    * Reprezentuje orientację obiektu
+    * względem osi y globalnego układu współrzędnych
+    */
+    MacOb MacWir;
 /*!
 * \brief Wymiary graniastosłupa
 * 
@@ -61,6 +68,15 @@ class GraniastoslupHex:public Obiekt3D {
     * \param[in] api - wskaźnik do programu graficznego, w którym ma być rysowany obiekt
     */
     GraniastoslupHex(double base_edge,double height,drawNS::Draw3DAPI *api);
+    /*!
+    * \brief Metoda obracająca trójwymiarowy obiekt
+    * 
+    * Zmienia macierz orientacji obiektu o wybrany kat
+    * (W osi y). Obrót następuje błyskawicznie(nie jest 
+    * animowany) \n
+    * \param[in] kat - wartość kąta, o który ma zostać obrócony obiekt 
+    */
+    void Wiruj(double kat);
     void Rysuj() override;
     void Obroc(double kat) override;
     void Ruszaj(double odleglosc) override;

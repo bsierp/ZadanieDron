@@ -20,18 +20,18 @@ void GraniastoslupHex::ustaw_wierzcholki(){
     Wektor <double,3> pol_base_edge(this->wym[0]/2,0,0);
     Wektor <double,3> pol_height(0,this->wym[1]/2,0);
     Wektor <double,3> pol_hex_height(0,0,(this->wym[0]*sqrt(3))/2);
-    this->wierzcholki[0]=this->srodek+this->orient*((pol_base_edge+pol_height+pol_hex_height)*(-1));
-    this->wierzcholki[1]=this->srodek+this->orient*(pol_base_edge-pol_height-pol_hex_height);
-    this->wierzcholki[2]=this->srodek+this->orient*(pol_base_edge*2-pol_height);
-    this->wierzcholki[3]=this->srodek+this->orient*(pol_base_edge-pol_height+pol_hex_height);
-    this->wierzcholki[4]=this->srodek+this->orient*(pol_hex_height-pol_base_edge-pol_height);
-    this->wierzcholki[5]=this->srodek+this->orient*(pol_base_edge*(-2)-pol_height);
-    this->wierzcholki[6]=this->srodek+this->orient*(pol_height-pol_base_edge-pol_hex_height);
-    this->wierzcholki[7]=this->srodek+this->orient*(pol_base_edge+pol_height-pol_hex_height);
-    this->wierzcholki[8]=this->srodek+this->orient*(pol_base_edge*2+pol_height);
-    this->wierzcholki[9]=this->srodek+this->orient*(pol_base_edge+pol_height+pol_hex_height);
-    this->wierzcholki[10]=this->srodek+this->orient*(pol_hex_height+pol_height-pol_base_edge);
-    this->wierzcholki[11]=this->srodek+this->orient*(pol_base_edge*(-2)+pol_height);
+    this->wierzcholki[0]=this->srodek+this->orient*this->MacWir*((pol_base_edge+pol_height+pol_hex_height)*(-1));
+    this->wierzcholki[1]=this->srodek+this->orient*this->MacWir*(pol_base_edge-pol_height-pol_hex_height);
+    this->wierzcholki[2]=this->srodek+this->orient*this->MacWir*(pol_base_edge*2-pol_height);
+    this->wierzcholki[3]=this->srodek+this->orient*this->MacWir*(pol_base_edge-pol_height+pol_hex_height);
+    this->wierzcholki[4]=this->srodek+this->orient*this->MacWir*(pol_hex_height-pol_base_edge-pol_height);
+    this->wierzcholki[5]=this->srodek+this->orient*this->MacWir*(pol_base_edge*(-2)-pol_height);
+    this->wierzcholki[6]=this->srodek+this->orient*this->MacWir*(pol_height-pol_base_edge-pol_hex_height);
+    this->wierzcholki[7]=this->srodek+this->orient*this->MacWir*(pol_base_edge+pol_height-pol_hex_height);
+    this->wierzcholki[8]=this->srodek+this->orient*this->MacWir*(pol_base_edge*2+pol_height);
+    this->wierzcholki[9]=this->srodek+this->orient*this->MacWir*(pol_base_edge+pol_height+pol_hex_height);
+    this->wierzcholki[10]=this->srodek+this->orient*this->MacWir*(pol_hex_height+pol_height-pol_base_edge);
+    this->wierzcholki[11]=this->srodek+this->orient*this->MacWir*(pol_base_edge*(-2)+pol_height);
 }
 void GraniastoslupHex::Rysuj(){
 (*this).ustaw_wierzcholki();
@@ -51,6 +51,12 @@ void GraniastoslupHex::Ruszaj(double odl){
     (*this).Wymaz();
     Wektor<double,3> przemieszczenie(0,odl,0);
     this->srodek=this->srodek+this->orient*przemieszczenie;
+    (*this).Rysuj();
+}
+void GraniastoslupHex::Wiruj(double kat){
+    (*this).Wymaz();
+    MacOb nowa_wir('y',kat);
+    this->MacWir=this->MacWir*nowa_wir;
     (*this).Rysuj();
 }
 void GraniastoslupHex::Wznies_Opusc(double odl){

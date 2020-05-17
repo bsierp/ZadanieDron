@@ -1,7 +1,9 @@
 #ifndef INTERFEJS_HH
 #define INTERFEJS_HH
 #define DRONE_MOVEMENT_FREQUENCY 0.01
-#define DRONE_ROTATION_FREQUENCY 0.1
+#define DRONE_ROTATION_FREQUENCY 0.01
+#define PROPELLER_DRONE_LENGTH_RATIO 2
+#define PROPELLER_DEGREE_PER_UNIT 90
 /*!
  * \file
  * \brief Definicja klasy abstrakcyjnej Interfejs

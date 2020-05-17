@@ -8,6 +8,7 @@
  * oraz deklaracje metod tej klasy.
  */
 #include "Interfejs.hh"
+#include "Sruba.hh"
 /*!
 * \brief Model pojęcia Dron
 *
@@ -16,11 +17,29 @@
 * oraz klasie Prostopadloscian.
 */
 class Dron:public Prostopadloscian,public Interfejs{
+    protected:
+    /*!
+    * \brief Wirniki drona
+    * 
+    * W tablicy przechowywane są wirniki drona,
+    * które obracają się podczas ruchu drona
+    */
+    Sruba wirnik[2];
+    /*!
+    * \brief Metoda ustawiająca wirniki
+    * 
+    * Metoda ustawia wirniki na podstawie
+    * aktualnej pozycji i orientacji drona
+    */
+    void Ustaw_Sruby();
     public:
     /*!
     * \brief Konstruktor czteroparametryczny klasy Dron
     * 
     * Konstruktor wypełnia tablicę wymiarów drona parametrami konstruktora. \n
+    * Dodatkowo na podstawie tych wymiarów tworzy śruby, znajdujące się z tyłu 
+    * drona. Stosunek długości śruby do długości drona zdefiniowany jest przez stałą
+    * PROPELLER_DRONE_LENGTH_RATIO \n
     * \param[in] width - szerokość drona (wymiar w osi x)
     * \param[in] length - długość drona (wymiar w osi y)
     * \param[in] height - wysokość drona (wymiar w osi z)
