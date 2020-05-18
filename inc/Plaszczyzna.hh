@@ -1,6 +1,5 @@
 #ifndef PLASZCZYZNA_HH
 #define PLASZCZYZNA_HH
-using std::vector;
 /*!
  * \file
  * \brief Definicja klasy abstrakcyjnej Plaszczyzna
@@ -17,8 +16,21 @@ using std::vector;
 */
 class Plaszczyzna:public Obiekt3D{
 protected:
+/*!
+* \brief Wymiary płaszczyzny
+* 
+* W tablicy przechowywane są wymiary
+* plaszczyzny
+*/
 double granice[5];
 public:
+    /*!
+    * \brief Metoda zmieniająca poziom płaszczyzny
+    * 
+    * Metoda zmienia poziom płaszczyzny na poziom
+    * podany w parametrze
+    * \param[in] level - nowy poziom płaszczyzny (w osi z)
+    */
 virtual void Poziom(double level)=0;
 };
 #endif

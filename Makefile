@@ -2,11 +2,13 @@ CPPFLAGS= -c -g -Wall -pedantic -std=c++17 -iquote inc
 OBJ=./obj
 TRGDIR=./
 
-${TRGDIR}/test: ${OBJ} ${OBJ}/main.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/Prostopadloscian.o ${OBJ}/WekC.o ${OBJ}/MacC.o ${OBJ}/MacOb.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupHex.o ${OBJ}/Sruba.o
-			g++ -o ${TRGDIR}/test ${OBJ}/main.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/Prostopadloscian.o ${OBJ}/WekC.o ${OBJ}/MacC.o ${OBJ}/MacOb.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupHex.o ${OBJ}/Sruba.o -lpthread
+__start__: ${TRGDIR}/dron
+		${TRGDIR}/dron
+${TRGDIR}/dron: ${OBJ} ${OBJ}/main.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/Prostopadloscian.o ${OBJ}/WekC.o ${OBJ}/MacC.o ${OBJ}/MacOb.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupHex.o ${OBJ}/Sruba.o ${OBJ}/Woda.o ${OBJ}/Dno.o
+			g++ -o ${TRGDIR}/dron ${OBJ}/main.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/Prostopadloscian.o ${OBJ}/WekC.o ${OBJ}/MacC.o ${OBJ}/MacOb.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupHex.o ${OBJ}/Sruba.o ${OBJ}/Woda.o ${OBJ}/Dno.o -lpthread
 ${OBJ}:
 		mkdir ${OBJ}
-${OBJ}/main.o: src/main.cpp inc/Obiekt3D.hh inc/Wek.hh inc/Mac.hh inc/Dr3D_gnuplot_api.hh inc/Draw3D_api_interface.hh inc/Prostopadloscian.hh inc/Interfejs.hh inc/MacOb.hh inc/GraniastoslupHex.hh inc/Sruba.hh
+${OBJ}/main.o: src/main.cpp inc/Obiekt3D.hh inc/Wek.hh inc/Mac.hh inc/Dr3D_gnuplot_api.hh inc/Draw3D_api_interface.hh inc/Prostopadloscian.hh inc/Interfejs.hh inc/MacOb.hh inc/GraniastoslupHex.hh inc/Sruba.hh inc/Plaszczyzna.hh inc/Dno.hh inc/Woda.hh
 		g++ ${CPPFLAGS} -o ${OBJ}/main.o src/main.cpp
 ${OBJ}/Dr3D_gnuplot_api.o: src/Dr3D_gnuplot_api.cpp inc/Dr3D_gnuplot_api.hh inc/Draw3D_api_interface.hh
 		g++ ${CPPFLAGS} -o ${OBJ}/Dr3D_gnuplot_api.o src/Dr3D_gnuplot_api.cpp
@@ -24,6 +26,12 @@ ${OBJ}/GraniastoslupHex.o: src/GraniastoslupHex.cpp inc/GraniastoslupHex.hh inc/
 		g++ ${CPPFLAGS} -o ${OBJ}/GraniastoslupHex.o src/GraniastoslupHex.cpp
 ${OBJ}/Sruba.o: src/Sruba.cpp inc/Sruba.hh inc/GraniastoslupHex.hh inc/Wek.hh inc/Mac.hh inc/Dr3D_gnuplot_api.hh inc/Draw3D_api_interface.hh inc/Obiekt3D.hh inc/MacOb.hh
 		g++ ${CPPFLAGS} -o ${OBJ}/Sruba.o src/Sruba.cpp
+${OBJ}/Dno.o: src/Dno.cpp inc/Dno.hh inc/Plaszczyzna.hh inc/Wek.hh inc/Mac.hh inc/Dr3D_gnuplot_api.hh inc/Draw3D_api_interface.hh inc/Obiekt3D.hh inc/MacOb.hh
+		g++ ${CPPFLAGS} -o ${OBJ}/Dno.o src/Dno.cpp
+${OBJ}/Woda.o: src/Woda.cpp inc/Woda.hh inc/Plaszczyzna.hh inc/Wek.hh inc/Mac.hh inc/Dr3D_gnuplot_api.hh inc/Draw3D_api_interface.hh inc/Obiekt3D.hh inc/MacOb.hh
+		g++ ${CPPFLAGS} -o ${OBJ}/Woda.o src/Woda.cpp
+inc/Plaszczyzna.hh: inc/Obiekt3D.hh inc/MacOb.hh inc/Wek.hh inc/Mac.hh inc/Draw3D_api_interface.hh inc/Dr3D_gnuplot_api.hh
+		touch inc/Plaszczyzna.hh
 inc/Dr3D_gnuplot_api.hh: inc/Draw3D_api_interface.hh
 		touch inc/Dr3D_gnuplot_api.hh
 inc/Interfejs.hh: inc/Prostopadloscian.hh inc/Obiekt3D.hh inc/MacOb.hh inc/Wek.hh inc/Mac.hh inc/Draw3D_api_interface.hh inc/Dr3D_gnuplot_api.hh

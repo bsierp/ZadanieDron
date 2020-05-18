@@ -5,17 +5,9 @@ if(width>0&&length>0&&height>0){
     wym[1]=length;
     wym[2]=height;
     gplt=api;
-    if(width>height){
-     Sruba pom(width-height,this->wym[1]/PROPELLER_DRONE_LENGTH_RATIO,api);
-     wirnik[0]=pom;
-     wirnik[1]=pom;  
-    }
-    else
-    {
-    Sruba pom(height-width,this->wym[1]/PROPELLER_DRONE_LENGTH_RATIO,api);
-     wirnik[0]=pom;
-     wirnik[1]=pom;    
-    }
+    Sruba pom(PROPELLER_BASE_EDGE,this->wym[1]/PROPELLER_DRONE_LENGTH_RATIO,api);
+    wirnik[0]=pom;
+    wirnik[1]=pom;  
     }
     else
     {
@@ -62,6 +54,8 @@ void Dron::ruch_drona(double odl){
 }
     (*this).Ruszaj(DRONE_MOVEMENT_FREQUENCY*(1-((j-odl)/DRONE_MOVEMENT_FREQUENCY)));
     (*this).Ustaw_Sruby();
+    this->wirnik[0].wiruj_sruba(DRONE_MOVEMENT_FREQUENCY*PROPELLER_DEGREE_PER_UNIT);
+    this->wirnik[1].wiruj_sruba(DRONE_MOVEMENT_FREQUENCY*PROPELLER_DEGREE_PER_UNIT);
     this->gplt->redraw();
     }
     this->gplt->change_ref_time_ms(0);
@@ -82,10 +76,12 @@ void Dron::obrot_drona(double kat_obr){
 void Dron::wznies_opusc_drona(double odl){
     this->gplt->change_ref_time_ms(-1);
     double j;
-    if(odl>=0){
+    if(odl>0){
     for(j=0;j<=odl;j+=DRONE_MOVEMENT_FREQUENCY){
         (*this).Wznies_Opusc(DRONE_MOVEMENT_FREQUENCY);
         (*this).Ustaw_Sruby();
+        this->wirnik[0].wiruj_sruba(DRONE_MOVEMENT_FREQUENCY*PROPELLER_DEGREE_PER_UNIT);
+        this->wirnik[1].wiruj_sruba(DRONE_MOVEMENT_FREQUENCY*PROPELLER_DEGREE_PER_UNIT);
         this->gplt->redraw();
     }
     (*this).Wznies_Opusc(DRONE_MOVEMENT_FREQUENCY*(1-((j-odl)/DRONE_MOVEMENT_FREQUENCY)));
@@ -95,8 +91,10 @@ void Dron::wznies_opusc_drona(double odl){
     else
     {
     for(j=0;j>=odl;j-=DRONE_MOVEMENT_FREQUENCY){
-        (*this).Wznies_Opusc(DRONE_MOVEMENT_FREQUENCY);
+        (*this).Wznies_Opusc(-DRONE_MOVEMENT_FREQUENCY);
         (*this).Ustaw_Sruby();
+        this->wirnik[0].wiruj_sruba(DRONE_MOVEMENT_FREQUENCY*PROPELLER_DEGREE_PER_UNIT);
+        this->wirnik[1].wiruj_sruba(DRONE_MOVEMENT_FREQUENCY*PROPELLER_DEGREE_PER_UNIT);
         this->gplt->redraw();
     }
     (*this).Wznies_Opusc(-DRONE_MOVEMENT_FREQUENCY*(1-((j-odl)/DRONE_MOVEMENT_FREQUENCY)));

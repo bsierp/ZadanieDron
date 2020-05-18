@@ -78,9 +78,33 @@ class GraniastoslupHex:public Obiekt3D {
     */
     void Wiruj(double kat);
     void Rysuj() override;
-    void Obroc(double kat) override;
-    void Ruszaj(double odleglosc) override;
-    void Wznies_Opusc(double odl) override;
+    /*!
+    * \brief Metoda obracająca graniastosłup
+    * 
+    * Zmienia macierz orientacji obiektu o wybrany kat
+    * (W osi z). Obrót następuje błyskawicznie(nie jest 
+    * animowany) \n
+    * \param[in] kat - wartość kąta, o który ma zostać obrócony obiekt 
+    */
+    void Obroc(double kat);
+    /*!
+    * \brief Metoda przesuwająca graniastosłup
+    * 
+    * Zmienia położenie obiektu w przód
+    * o wybraną odległość. Ruch następuje błyskawicznie
+    * (nie jest animowany) \n
+    * \param[in] odl - odległość o jaką obiekt ma się przesunąć
+    */
+    void Ruszaj(double odleglosc);
+    /*!
+    * \brief Metoda ruszająca graniastosłupem w osi z
+    * 
+    * Zmienia położenie obiektu w osi z
+    * o wybraną wartość. Ruch następuje błyskawicznie
+    * (nie jest animowany) \n
+    * \param[in] odl - odleglosc o jaka ma sie wzniesc/opasc obiekt
+    */
+    void Wznies_Opusc(double odl);
     void Wymaz() override;
 };
 #endif

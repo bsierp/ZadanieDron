@@ -22,12 +22,12 @@ void Dno::Rysuj(){
     this->id=this->gplt->draw_surface(vector<vector<Point3D> > {{
 	drawNS::Point3D(this->granice[0],this->granice[2],this->granice[4]), drawNS::Point3D(this->granice[0],0,this->granice[4]), drawNS::Point3D(this->granice[0],this->granice[3],this->granice[4])
 	  },{
-	drawNS::Point3D(this->granice[0]/2,this->granice[2],this->granice[4]), drawNS::Point3D(this->granice[0],0,this->granice[4]), drawNS::Point3D(this->granice[0],this->granice[3],this->granice[4])       
+	drawNS::Point3D(this->granice[0]/2,this->granice[2],this->granice[4]), drawNS::Point3D(this->granice[0]/2,0,this->granice[4]), drawNS::Point3D(this->granice[0]/2,this->granice[3],this->granice[4])       
 	  },{
-	drawNS::Point3D(0,this->granice[2],this->granice[4]), drawNS::Point3D(this->granice[0],0,this->granice[4]), drawNS::Point3D(this->granice[0],this->granice[3],this->granice[4])       
+	drawNS::Point3D(0,this->granice[2],this->granice[4]), drawNS::Point3D(0,0,this->granice[4]), drawNS::Point3D(0,this->granice[3],this->granice[4])       
 	  },{
-	drawNS::Point3D(this->granice[0]/2,this->granice[2],this->granice[4]), drawNS::Point3D(this->granice[0],0,this->granice[4]), drawNS::Point3D(this->granice[0],this->granice[3],this->granice[4])       
+	drawNS::Point3D(this->granice[1]/2,this->granice[2],this->granice[4]), drawNS::Point3D(this->granice[1]/2,0,this->granice[4]), drawNS::Point3D(this->granice[1]/2,this->granice[3],this->granice[4])       
 	  },{
-	drawNS::Point3D(this->granice[1],this->granice[2],this->granice[4]), drawNS::Point3D(this->granice[0],0,this->granice[4]), drawNS::Point3D(this->granice[0],this->granice[3],this->granice[4])       
-	  }},"grey");
+	drawNS::Point3D(this->granice[1],this->granice[2],this->granice[4]), drawNS::Point3D(this->granice[1],0,this->granice[4]), drawNS::Point3D(this->granice[1],this->granice[3],this->granice[4])       
+	  }},"yellow")+1;
 }

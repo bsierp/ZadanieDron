@@ -64,9 +64,33 @@ class Prostopadloscian:public Obiekt3D {
     */
     Prostopadloscian(double width,double length,double height,drawNS::Draw3DAPI *api);
     void Rysuj() override;
-    void Obroc(double kat) override;
-    void Ruszaj(double odleglosc) override;
-    void Wznies_Opusc(double odl) override;
+    /*!
+    * \brief Metoda obracająca prostopadłościan
+    * 
+    * Zmienia macierz orientacji obiektu o wybrany kat
+    * (W osi z). Obrót następuje błyskawicznie(nie jest 
+    * animowany) \n
+    * \param[in] kat - wartość kąta, o który ma zostać obrócony obiekt 
+    */
+    void Obroc(double kat);
+    /*!
+    * \brief Metoda przesuwająca prostopadłościan
+    * 
+    * Zmienia położenie obiektu w przód
+    * o wybraną odległość. Ruch następuje błyskawicznie
+    * (nie jest animowany) \n
+    * \param[in] odl - odległość o jaką obiekt ma się przesunąć
+    */
+    void Ruszaj(double odleglosc);
+    /*!
+    * \brief Metoda ruszająca prostopadłościanem w osi z
+    * 
+    * Zmienia położenie obiektu w osi z
+    * o wybraną wartość. Ruch następuje błyskawicznie
+    * (nie jest animowany) \n
+    * \param[in] odl - odleglosc o jaka ma sie wzniesc/opasc obiekt
+    */
+    void Wznies_Opusc(double odl);
     void Wymaz() override;
     
 };

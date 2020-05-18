@@ -55,33 +55,6 @@ class Obiekt3D{
     */
     virtual void Rysuj()=0;
     /*!
-    * \brief Metoda obracająca trójwymiarowy obiekt
-    * 
-    * Zmienia macierz orientacji obiektu o wybrany kat
-    * (W osi z). Obrót następuje błyskawicznie(nie jest 
-    * animowany) \n
-    * \param[in] kat - wartość kąta, o który ma zostać obrócony obiekt 
-    */
-    virtual void Obroc(double kat)=0;
-    /*!
-    * \brief Metoda przesuwająca obiekt
-    * 
-    * Zmienia położenie obiektu w przód
-    * o wybraną odległość. Ruch następuje błyskawicznie
-    * (nie jest animowany) \n
-    * \param[in] odl - odległość o jaką obiekt ma się przesunąć
-    */
-    virtual void Ruszaj(double odl)=0;
-    /*!
-    * \brief Metoda ruszająca obiektem w osi z
-    * 
-    * Zmienia położenie obiektu w osi z
-    * o wybraną wartość. Ruch następuje błyskawicznie
-    * (nie jest animowany) \n
-    * \param[in] odl - odleglosc o jaka ma sie wzniesc/opasc obiekt
-    */
-    virtual void Wznies_Opusc(double odl)=0;
-    /*!
     * \brief Metoda wymazująca obiekt
     * 
     * Wymazuje obiekt z programu graficznego.

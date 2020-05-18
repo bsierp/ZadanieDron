@@ -4,6 +4,7 @@
 #define DRONE_ROTATION_FREQUENCY 0.01
 #define PROPELLER_DRONE_LENGTH_RATIO 2
 #define PROPELLER_DEGREE_PER_UNIT 90
+#define PROPELLER_BASE_EDGE 1
 /*!
  * \file
  * \brief Definicja klasy abstrakcyjnej Interfejs
